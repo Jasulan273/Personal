@@ -5,17 +5,14 @@ import Tilt from "react-parallax-tilt"
 import { Code, Layers, Database, Cpu, Globe, GitBranch, Rocket, Box } from "lucide-react"
 
 const skills = [
- 
   { name: "React", icon: <Globe size={32} /> },
   { name: "Vue", icon: <Box size={32} /> },
   { name: "TypeScript", icon: <Code size={32} /> },
   { name: "HTML / CSS", icon: <Layers size={32} /> },
-
   { name: "Node.js", icon: <Cpu size={32} /> },
   { name: "Python", icon: <Database size={32} /> },
   { name: "PHP", icon: <Code size={32} /> },
   { name: "Django", icon: <Rocket size={32} /> },
-
   { name: "Git", icon: <GitBranch size={32} /> },
   { name: "Docker", icon: <Box size={32} /> },
   { name: "Linux", icon: <Globe size={32} /> },
@@ -76,7 +73,7 @@ function CanvasBackground() {
       })
     }
 
-    setInterval(spawnWord, 1000)
+    const interval = setInterval(spawnWord, 1000)
     function animate() {
       draw()
       requestAnimationFrame(animate)
@@ -88,7 +85,10 @@ function CanvasBackground() {
       canvas.height = window.innerHeight
     }
     window.addEventListener("resize", resize)
-    return () => window.removeEventListener("resize", resize)
+    return () => {
+      window.removeEventListener("resize", resize)
+      clearInterval(interval)
+    }
   }, [])
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
@@ -104,20 +104,24 @@ export default function Skills() {
         exit={{ opacity: 0, y: -60 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: false, amount: 0.3 }}
-        className="w-[1200px] mx-auto flex flex-col items-center relative z-10"
+        className="w-[1200px] max-w-full mx-auto flex flex-col items-center relative z-10"
       >
-        <h2 className="text-5xl font-bold mb-12">
+        <h2 className="text-5xl font-bold mb-12 text-center">
           My <span className="text-gray-400">Skills</span>
         </h2>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:gap-6">
           {skills.map((skill, index) => (
-            <Tilt key={index} tiltMaxAngleX={12} tiltMaxAngleY={12} className="w-40 h-40">
+            <Tilt key={index} tiltMaxAngleX={12} tiltMaxAngleY={12} className="w-full">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="w-full h-full cursor-pointer border border-white bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center text-center font-medium text-md hover:bg-white hover:text-black transition-all duration-300"
+                className="w-full cursor-pointer border border-white bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center text-center font-medium text-md hover:bg-white hover:text-black transition-all duration-300 mx-auto
+                  sm:w-32 sm:h-32
+                  md:w-40 md:h-40
+                  lg:w-40 lg:h-40
+                "
               >
                 <div className="mb-2">{skill.icon}</div>
                 {skill.name}

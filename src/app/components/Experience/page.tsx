@@ -1,9 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
-import { BackgroundBeams } from "@/components/ui/background-beams"
-import { AuroraBackground } from "@/components/ui/aurora-background"
-import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Card, CardContent } from "@/components/ui/card"
 import { Briefcase } from "lucide-react"
 
 const experiences = [
@@ -43,39 +41,39 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <div className="relative bg-white h-screen flex flex-col items-center justify-center overflow-hidden">
-
-
+    <div className="relative bg-white min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6">
       <motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: false, amount: 0.3 }}
-        className="text-6xl font-bold text-black mb-12 relative z-10"
+        className="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-8 sm:mb-12 text-center"
       >
         My <span className="text-gray-500">Experience</span>
       </motion.h2>
 
-      <ScrollArea className="h-[500px] w-[900px] rounded-xl border border-gray-200 bg-white shadow-xl relative z-10">
-        <div className="p-8 space-y-6">
+      <ScrollArea
+        className="w-full max-w-[900px] min-h-[400px] sm:min-h-[500px] max-h-[80vh] rounded-xl border border-gray-200 bg-white shadow-xl"
+      >
+        <div className="p-4 sm:p-8 space-y-4 sm:space-y-6">
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60 }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: i * 0.2 }}
+              transition={{ duration: 0.6, delay: i * 0.2 }}
               viewport={{ once: false, amount: 0.3 }}
             >
               <Card className={`border-l-4 ${exp.color}`}>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                      <Briefcase size={20} className="text-gray-500" />
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 sm:mb-3">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <Briefcase size={18} className="text-gray-500" />
                       {exp.role} at {exp.company}
                     </h3>
-                    <span className="text-gray-500 text-sm">{exp.period}</span>
+                    <span className="text-gray-500 text-sm sm:text-base mt-1 sm:mt-0">{exp.period}</span>
                   </div>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                     {exp.description}
                   </p>
                 </CardContent>

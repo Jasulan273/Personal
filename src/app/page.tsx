@@ -21,7 +21,7 @@ export default function Home() {
       {panels.map((panel, idx) => (
         <section
           key={panel.id}
-          className={`h-screen w-full flex items-center justify-center ${
+          className={` w-full flex items-center justify-center ${
             idx === 1 ? "bg-black text-white" : idx === 2 ? "bg-white text-black" : ""
           }`}
         >
