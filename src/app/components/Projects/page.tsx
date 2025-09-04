@@ -41,12 +41,12 @@ const Typewriter: React.FC<TypewriterProps> = ({ text }) => {
 }
 
 const projects = [
-  { title: "Project One", link: "#", image: "https://via.placeholder.com/400" },
-  { title: "Project Two", link: "#", image: "https://via.placeholder.com/400" },
-  { title: "Project Three", link: "#", image: "https://via.placeholder.com/400" },
-  { title: "Project Four", link: "#", image: "https://via.placeholder.com/400" },
-  { title: "Project Five", link: "#", image: "https://via.placeholder.com/400" },
-  { title: "Project Six", link: "#", image: "https://via.placeholder.com/400" },
+  { title: "Quanta Up", link: "https://quantaup.netlify.app/home", image: "/quantup.png" },
+  { title: "Duck IT", link: "https://github.com/DAKExDUCK/duck-it", image: "/duckit.png" },
+  { title: "Drive Now", link: "https://jasulan273.github.io/Drive.Now/", image: "/drivenow.png" },
+  { title: "Restaurant", link: "https://github.com/Jasulan273/Restaurant", image: "/restaurant.png" },
+  { title: "Plant Store", link: "https://github.com/Jasulan273/PlantStore", image: "/greenshop.png" },
+  { title: "Project Six", link: "https://github.com/Talap-creator/BlogAPP", image: "/blog.png" },
 ]
 
 export default function Projects() {
