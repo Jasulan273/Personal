@@ -118,7 +118,7 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <div className="relative w-full overflow-hidden">
+        <div className="relative w-[90%] mx-auto overflow-hidden">
             <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full -z-10" />
             <Navbar />
             <section className="relative z-10 text-gray-900 body-font">
