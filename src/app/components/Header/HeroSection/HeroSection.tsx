@@ -29,6 +29,7 @@ function useTypingEffect(text: string, speed = 60) {
 export default function HeroSection() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const { displayed, done } = useTypingEffect("Welcome!", 60);
+
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         const targetId = e.currentTarget.getAttribute('href')?.slice(1);
@@ -47,14 +48,21 @@ export default function HeroSection() {
         canvas.width = width;
         canvas.height = height;
 
-        let particles: { x: number; y: number; r: number; dx: number; dy: number; color: string }[] = [];
         const colors = ["#7f5af0","#ffd803","#2cb67d","#f15bb5","#00aaff","#ff6f61"];
-        for (let i = 0; i < 120; i++) {
-            const r = Math.random() * 2 + 1;
+        const isMobile = width < 768;
+
+        const particleCount = isMobile ? 40 : 120;
+        const maxRadius = isMobile ? 1.5 : 3;
+        const speedFactor = isMobile ? 0.5 : 1.2;
+        const lineDistance = isMobile ? 80 : 120;
+
+        const particles: { x: number; y: number; r: number; dx: number; dy: number; color: string }[] = [];
+        for (let i = 0; i < particleCount; i++) {
+            const r = Math.random() * maxRadius + 1;
             const x = Math.random() * width;
             const y = Math.random() * height;
-            const dx = (Math.random() - 0.5) * 1.2;
-            const dy = (Math.random() - 0.5) * 1.2;
+            const dx = (Math.random() - 0.5) * speedFactor;
+            const dy = (Math.random() - 0.5) * speedFactor;
             const color = colors[Math.floor(Math.random() * colors.length)];
             particles.push({ x, y, r, dx, dy, color });
         }
@@ -66,21 +74,20 @@ export default function HeroSection() {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fillStyle = p.color + "88";
-                ctx.shadowColor = p.color;
-                ctx.shadowBlur = 16;
                 ctx.fill();
             }
+
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const p1 = particles[i];
                     const p2 = particles[j];
                     const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-                    if (dist < 120) {
+                    if (dist < lineDistance) {
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(p2.x, p2.y);
                         ctx.strokeStyle = p1.color + "44";
-                        ctx.lineWidth = 1.2 - dist / 120;
+                        ctx.lineWidth = (isMobile ? 0.5 : 1.2) - dist / lineDistance;
                         ctx.stroke();
                     }
                 }
