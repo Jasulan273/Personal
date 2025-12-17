@@ -158,7 +158,7 @@ export default function HeroSection() {
                             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.7 }} className="w-full flex flex-col gap-3 mt-4">
                                 <div className="flex items-center justify-between">
                                     <span className="text-gray-600 dark:text-gray-300 text-sm md:text-lg">Experience:</span>
-                                    <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm md:text-lg">2 years 8 months</span>
+                                    <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm md:text-lg">1 years 8 months</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-gray-600 dark:text-gray-300 text-sm md:text-lg">Location:</span>
